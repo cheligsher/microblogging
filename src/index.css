@@ -13,12 +13,23 @@ form{
   width: 35%;
 }
 
-textarea{
+.add-tweet-div textarea{
   width: 100%;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px 0 0 10px;
+  color: white;
 }
 
-button{
+.add-tweet-div button{
   position: absolute;
   right: 5px;
   bottom: 15px;
+  background-color: #007BFF;
+  color: white;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 3px;
 }
