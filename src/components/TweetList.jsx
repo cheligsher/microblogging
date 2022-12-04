@@ -1,18 +1,21 @@
-import React from 'react'
-import Tweet from './Tweet'
+import React, { useState } from "react";
+import Tweet from "./Tweet";
 
 function TweetList(props) {
-  const { tweets } = props
-  {tweets.map((tweet)=>{
-    return (
-      <div className='tweet-list'>
-        {/* {tweet} */}
-        {console.log(tweet.text)};
-        {tweet.text}
-      </div>
-    )
+  const { tweets } = props;
 
-  })}
+  return (
+    <div>
+      {tweets.map((tweet) => {
+        return (
+          <div className="tweet-list">
+            
+            
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
-export default TweetList
+export default TweetList;
