@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import Tweet from "./Tweet";
 
-function TweetList(props) {
-  const { tweets } = props;
-
+function TweetList({ tweets }) {
   return (
     <div>
       {tweets.map((tweet) => {
         return (
-          <div className="tweet-list">
-            
-            
+          <div>
+            <Tweet tweet={tweet} />
           </div>
         );
       })}
