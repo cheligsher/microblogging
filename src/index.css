@@ -79,6 +79,7 @@ button:disabled {
 
   .tweet {
     width: 55%;
+    word-wrap:break-word;
   }
 }
 

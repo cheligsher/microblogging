@@ -8,9 +8,13 @@ function App() {
   const [tweetList, setTweetList] = useState([]);
   
   const getInput = async(newTweet) => {
-    const newTweetList = [newTweet, ...tweetList];
-    const res = await axios.post("https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet", newTweet)
-    setTweetList(newTweetList);
+    try{
+      const newTweetList = [newTweet, ...tweetList];
+      const res = await axios.post("https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet", newTweet)
+      setTweetList(newTweetList);
+    } catch(err){
+      console.error("Error: " + err);
+    }
   };
   
   useEffect(()=>{ 
