@@ -5,9 +5,9 @@ function AddTweet({ input }) {
   const submit = (e) => {
     e.preventDefault();
     const newText = {
-      text: text,
+      content: text,
       date: new Date().toISOString(),
-      user: "cheligsher",
+      userName: "cheligsher",
     };
     input(newText);
     setText("");
