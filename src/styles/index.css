@@ -10,7 +10,6 @@ form {
 }
 
 .add-tweet-div {
-  margin: auto;
   position: relative;
   width: 35%;
   height: 20%;
@@ -39,7 +38,6 @@ form {
 
 .tweet {
   text-align: center;
-  margin: auto;
   background-color: #343a40;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
@@ -68,7 +66,7 @@ button:disabled {
 
 .tweet-list{
   overflow-y: auto;
-  height: 550px;
+  height: 500px;
   padding: 0 10px 10px;
 }
 

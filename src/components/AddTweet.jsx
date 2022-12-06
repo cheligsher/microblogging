@@ -14,7 +14,7 @@ function AddTweet({ input, tweets }) {
   };
   return (
     <form onSubmit={submit}>
-      <div className="add-tweet-div">
+      <div className="add-tweet-div mx-auto">
         <textarea
           placeholder="What do you have in mind..."
           rows={8}

@@ -3,6 +3,7 @@ import AddTweet from "./components/AddTweet";
 import TweetList from "./components/TweetList";
 import { nanoid } from "nanoid";
 import axios, { Axios } from "axios";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [tweetList, setTweetList] = useState([]);
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <div className="main-container" key={nanoid()}>
+      <Navbar />
       <AddTweet input={getInput} tweets={tweetList} />
       <TweetList tweets={tweetList} />
     </div>

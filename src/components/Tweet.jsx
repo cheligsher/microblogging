@@ -3,7 +3,7 @@ import React from "react";
 
 function Tweet({ tweet }) {
   return (
-    <div className="tweet p-3" key={nanoid()}>
+    <div className="tweet p-3 mx-auto" key={nanoid()}>
       <div className="d-flex justify-content-between pb-2" key={nanoid()}>
         <div key={nanoid()}>{tweet.userName}</div>
         <div key={nanoid()}>{tweet.date}</div>
