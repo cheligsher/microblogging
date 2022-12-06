@@ -14,15 +14,21 @@ function App() {
   };
   
   useEffect(()=>{ 
-    axios.get("https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet")
-    .then((res) => {
-      setTweetList(res.data.tweets)} )
-    
+    try{
+      const getTweets = async() => {
+        const resp = await axios.get("https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet")
+        const data = await resp.data.tweets
+        setTweetList(data)
+      }
+      getTweets()
+    } catch(e){
+      console.error("Error: " + e)
+    }
   }, [])
 
   return (
     <div className="main-container" key={nanoid()}>
-      <AddTweet input={getInput} />
+      <AddTweet input={getInput} tweets={tweetList} />
       <TweetList tweets={tweetList} />
     </div>
   );

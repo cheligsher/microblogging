@@ -13,7 +13,7 @@ function TweetList({ tweets }) {
         {tweets.map((tweet) => {
           return (
             <div key={nanoid()}>
-              <Tweet tweet={tweet} />
+              <Tweet tweet={tweet}/>
             </div>
           );
         })}

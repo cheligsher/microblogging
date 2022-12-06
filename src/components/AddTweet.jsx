@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddTweet({ input }) {
+function AddTweet({ input, tweets }) {
   const [text, setText] = useState("");
   const submit = (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ function AddTweet({ input }) {
         ) : (
           ""
         )}
-        {text.length === 140 ? (
+        {(text.length === 140 || tweets.length == 0)? (
           <button type="submit" disabled>
             Tweet
           </button>
