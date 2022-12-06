@@ -17,7 +17,7 @@ function App() {
   }, [tweetList]);
 
   return (
-    <div>
+    <div className="main-container">
       <AddTweet input={getInput} />
       <TweetList tweets={tweetList} />
     </div>

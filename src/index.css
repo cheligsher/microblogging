@@ -13,6 +13,7 @@ form {
   margin: auto;
   position: relative;
   width: 35%;
+  height: 20%;
 }
 
 .add-tweet-div textarea {
@@ -36,7 +37,7 @@ form {
   border-radius: 3px;
 }
 
-.tweet-list {
+.tweet {
   text-align: center;
   margin: auto;
   background-color: #343a40;
@@ -45,9 +46,11 @@ form {
   width: 35%;
   margin-top: 15px;
   border-radius: 5px;
+  padding-bottom: 5px;
+
 }
 
-.tweet-list .justify-content-between {
+.tweet .justify-content-between {
   color: #6c757d;
 }
 
@@ -61,4 +64,30 @@ form {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.tweet-list{
+  overflow-y: auto;
+  height: 550px;
+  padding: 0 10px 10px;
+}
+
+@media(max-width:800px){
+  .add-tweet-div {
+    width: 55%;
+  }
+
+  .tweet {
+    width: 55%;
+  }
+}
+
+@media(max-width:430px){
+  .add-tweet-div {
+    width: 95%;
+  }
+
+  .tweet {
+    width: 95%;
+  }
 }

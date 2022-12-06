@@ -3,7 +3,7 @@ import Tweet from "./Tweet";
 
 function TweetList({ tweets }) {
   return (
-    <div>
+    <div className="tweet-list">
       {tweets.map((tweet) => {
         return (
           <div>
