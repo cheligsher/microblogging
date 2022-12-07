@@ -4,7 +4,7 @@ import TweetList from "./components/TweetList";
 import { nanoid } from "nanoid";
 import axios, { Axios } from "axios";
 import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
 
 function App() {
@@ -39,21 +39,23 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="main-container" key={nanoid()}>
         <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <AddTweet input={getInput} tweets={tweetList} />
-            <TweetList tweets={tweetList} />
-          </Route>
-          <Route path="/UserProfile">
-            <UserProfile />
-            
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <AddTweet input={getInput} tweets={tweetList} />
+                <TweetList tweets={tweetList} />
+              </>
+            }
+          ></Route>
+          <Route path="/UserProfile" element={<UserProfile />}></Route>
+        </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

@@ -1,6 +1,13 @@
 import React from 'react'
 import '../styles/profile.css'
 
+// 1. onChange for input
+// 2. useState for userName
+// 3. button onClick --> change userName using state
+// 
+// 4. store userName in localStorage until user adds tweet
+// 5. when user adds tweet, send username change to server
+
 function userProfile({ userName }) {
   return (
     <div className='mx-auto text-center user-profile-div d-flex flex-column'>

@@ -7,3 +7,17 @@ input{
 .user-profile-div{
     width: 40%;
 }
+
+.text-decoration-none{
+    color: #6c757d
+}
+
+.text-decoration-none:hover{
+    color: #fff;
+    background-color: #6c757d;
+    border-radius: 15px;
+}
+
+.active{
+    color: #fff; 
+}
