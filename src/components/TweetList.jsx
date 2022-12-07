@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import React, { useState } from "react";
+import React from "react";
 import Tweet from "./Tweet";
 
 function TweetList({ tweets }) {

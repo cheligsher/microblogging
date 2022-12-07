@@ -7,6 +7,7 @@ function AddTweet({ input, tweets, user }) {
     date: new Date().toISOString(),
     userName: user,
   };
+  
   const submit = (e) => {
     e.preventDefault();
     input(newText);
@@ -29,7 +30,7 @@ function AddTweet({ input, tweets, user }) {
         ) : (
           ""
         )}
-        {(text.length === 140 || tweets.length == 0)? (
+        {(text.length === 140 || text.length == 0)? (
           <button type="submit" disabled>
             Tweet
           </button>

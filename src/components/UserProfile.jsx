@@ -1,13 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/profile.css'
 
-// 1. onChange for input
-// 2. useState for userName
-// 3. button onClick --> change userName using state
-// 
-// 4. store userName in localStorage until user adds tweet
-// 5. when user adds tweet, send username change to server
-
 function UserProfile({ userName, userChange}) {
   const saveUser = () => {
     userChange(user);

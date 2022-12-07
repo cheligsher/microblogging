@@ -9,10 +9,6 @@ import UserProfile from "./components/UserProfile";
 
 function App() {
 
-  // const [tweetList, setTweetList] = useState(() => {
-  //   const storedTweets = JSON.parse(localStorage.getItem("tweets"));
-  //   return storedTweets || [];
-  // });
   const [tweetList, setTweetList] = useState([]);
   const getInput = async (newTweet) => {
     try {
@@ -42,15 +38,17 @@ function App() {
     }
   }, []);
 
-  const [user, setUser] = useState("cheli")
+  const [user, setUser] = useState(() => {
+    const storedProfile = JSON.parse(localStorage.getItem("userName"));
+    return storedProfile || "cheli";
+  });
 
   const userChange = (userName) => {
-    // console.log(e.target.value);
     setUser(userName)
   }
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user))
+    localStorage.setItem("userName", JSON.stringify(user))
   }, [user])
 
   return (
@@ -62,7 +60,7 @@ function App() {
             path="/"
             element={
               <>
-                <AddTweet input={getInput} tweets={tweetList} />
+                <AddTweet input={getInput} tweets={tweetList} user={user}/>
                 <TweetList tweets={tweetList} />
               </>
             }
