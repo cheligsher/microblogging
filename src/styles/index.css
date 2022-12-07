@@ -81,7 +81,8 @@ button:disabled {
   }
 }
 
-@media(max-width:430px){
+@media(max-width:600px){
+
   .add-tweet-div {
     width: 95%;
   }

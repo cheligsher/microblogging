@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function AddTweet({ input, tweets }) {
+function AddTweet({ input, tweets, user }) {
   const [text, setText] = useState("");
   const newText = {
     content: text,
     date: new Date().toISOString(),
-    userName: "cheligsher",
+    userName: user,
   };
   const submit = (e) => {
     e.preventDefault();

@@ -21,3 +21,9 @@ input{
 .active{
     color: #fff; 
 }
+
+@media(max-width:800px){
+    .user-profile-div{
+        width: 80%;
+    }
+  }
