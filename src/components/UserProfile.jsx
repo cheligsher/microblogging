@@ -8,16 +8,19 @@ import '../styles/profile.css'
 // 4. store userName in localStorage until user adds tweet
 // 5. when user adds tweet, send username change to server
 
-function UserProfile({ userName, inputChange}) {
+function UserProfile({ userName, userChange}) {
   const saveUser = () => {
-    const storedUserName = localStorage.setItem()
+    userChange(user);
   }
+
+  const [user, setUser] = useState(userName);
+
 
   return (
     <div className='mx-auto text-center user-profile-div d-flex flex-column'>
         <h2 className='text-light mb-3 text-start pt-4'>Profile</h2>
         <div className='text-light text-start'>User Name</div>
-        <input type="text" className='p-2 text-light w-100' onChange={inputChange} value={userName}/>
+        <input type="text" className='p-2 text-light w-100' value={user} onChange={e => setUser(e.target.value)}/>
         <div className='text-start mt-3 d-flex justify-content-end'>
                 <button className='btn btn-primary' onClick={saveUser}>Save</button>
         </div>

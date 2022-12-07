@@ -8,6 +8,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
 
 function App() {
+
+  // const [tweetList, setTweetList] = useState(() => {
+  //   const storedTweets = JSON.parse(localStorage.getItem("tweets"));
+  //   return storedTweets || [];
+  // });
   const [tweetList, setTweetList] = useState([]);
   const getInput = async (newTweet) => {
     try {
@@ -37,11 +42,11 @@ function App() {
     }
   }, []);
 
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState("cheli")
 
-  const inputChange = (e) => {
-    console.log(e.target.value);
-    setUser(e.target.value)
+  const userChange = (userName) => {
+    // console.log(e.target.value);
+    setUser(userName)
   }
 
   useEffect(() => {
@@ -62,7 +67,7 @@ function App() {
               </>
             }
           ></Route>
-          <Route path="/UserProfile" element={<UserProfile userName={user} inputChange={inputChange} />}></Route>
+          <Route path="/UserProfile" element={<UserProfile userName={user} userChange={userChange} />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
