@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import React from 'react'
-import '../styles/navbar.css'
+import '../styles/profile.css'
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
@@ -10,6 +10,7 @@ function Navbar() {
             <ul className="list-unstyled mx-5 d-flex flex-row py-3">
                 <li><NavLink to={"/"} className="px-3 text-decoration-none py-3" activeClassName="active">Home</NavLink></li>
                 <li><NavLink to={"/UserProfile"} className="px-3 text-decoration-none py-3" activeClassName="active">Profile</NavLink></li>
+                <li className='chirp ms-auto'>Chirp</li>
             </ul>
         </nav>
     </div>

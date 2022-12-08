@@ -32,10 +32,10 @@ function AddTweet({ input, tweets, user }) {
         )}
         {(text.length === 140 || text.length == 0)? (
           <button type="submit" disabled>
-            Tweet
+            Chirp
           </button>
         ) : (
-          <button type="submit">Tweet</button>
+          <button type="submit">Chirp</button>
         )}
       </div>
     </form>

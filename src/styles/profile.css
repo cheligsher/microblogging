@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Patrick+Hand&display=swap');
+
+.nav-bar{
+    width: 80%;
+    background-color: #343a40;
+}
+
+.chirp{
+    font-family: 'Luckiest Guy', cursive;
+    color: #37c37f;
+}
+
 input{
     background-color: transparent;
     border: 1px solid #fff;
@@ -26,4 +38,7 @@ input{
     .user-profile-div{
         width: 80%;
     }
-  }
+    .nav-bar{
+        width: 100%;
+    }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import AddTweet from "./components/AddTweet";
 import TweetList from "./components/TweetList";
 import { nanoid } from "nanoid";
@@ -6,9 +6,11 @@ import axios from "axios";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
+import TweetListContext, {
+  TweetListProvider,
+} from "./contexts/TweetListContext";
 
 function App() {
-
   const [tweetList, setTweetList] = useState([]);
   const getInput = async (newTweet) => {
     try {
@@ -44,29 +46,35 @@ function App() {
   });
 
   const userChange = (userName) => {
-    setUser(userName)
-  }
+    setUser(userName);
+  };
 
   useEffect(() => {
-    localStorage.setItem("userName", JSON.stringify(user))
-  }, [user])
+    localStorage.setItem("userName", JSON.stringify(user));
+  }, [user]);
 
   return (
     <BrowserRouter>
       <div className="main-container" key={nanoid()}>
         <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <AddTweet input={getInput} tweets={tweetList} user={user}/>
-                <TweetList tweets={tweetList} />
-              </>
-            }
-          ></Route>
-          <Route path="/UserProfile" element={<UserProfile userName={user} userChange={userChange} />}></Route>
-        </Routes>
+        <TweetListContext.Provider value={{ tweetList }}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <AddTweet input={getInput} tweets={tweetList} user={user} />
+                  <TweetList />
+                </>
+              }
+            ></Route>
+
+            <Route
+              path="/UserProfile"
+              element={<UserProfile userName={user} userChange={userChange} />}
+            ></Route>
+          </Routes>
+        </TweetListContext.Provider>
       </div>
     </BrowserRouter>
   );

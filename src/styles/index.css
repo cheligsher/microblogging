@@ -4,7 +4,6 @@ body {
 }
 
 form {
-  margin-top: 5px;
   width: 100%;
   text-align: center;
 }
@@ -25,15 +24,18 @@ form {
   color: white;
 }
 
-.add-tweet-div button {
-  position: absolute;
-  right: 5px;
-  bottom: 15px;
-  background-color: #007bff;
+button{
+  background-color: #37c37f;
   color: white;
   padding: 8px 12px;
   border: 0;
   border-radius: 3px;
+}
+
+.add-tweet-div button {
+  position: absolute;
+  right: 5px;
+  bottom: 15px;
 }
 
 .tweet {
@@ -42,7 +44,7 @@ form {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   width: 35%;
-  margin-top: 15px;
+  margin-top: 5px;
   border-radius: 5px;
   padding-bottom: 5px;
   word-break: break-word;
