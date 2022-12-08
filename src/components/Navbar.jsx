@@ -13,7 +13,7 @@ function Navbar() {
           <li>
             <NavLink
               to={"/"}
-              className="px-3 text-decoration-none py-3 link"
+              className="px-3 text-decoration-none py-3 link align-middle"
               activeClassName="active"
             >
               Home
@@ -22,7 +22,7 @@ function Navbar() {
           <li>
             <NavLink
               to={"/UserProfile"}
-              className="px-3 text-decoration-none py-3 link"
+              className="px-3 text-decoration-none py-3 link align-middle"
               activeClassName="active"
             >
               Profile

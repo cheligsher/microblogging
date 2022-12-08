@@ -5,9 +5,11 @@ import '../styles/profile.css'
 function UserProfile({ userName, userChange}) {
   const saveUser = () => {
     userChange(user);
+    showIsSaved(true)
   }
 
   const [user, setUser] = useState(userName);
+  const [isSaved, showIsSaved] = useState(false)
 
   return (
     <div className='mx-auto text-center user-profile-div d-flex flex-column'>
@@ -17,6 +19,7 @@ function UserProfile({ userName, userChange}) {
         <div className='text-start mt-3 d-flex justify-content-end'>
                 <button onClick={saveUser}>Save</button>
         </div>
+          {isSaved ? <p className='text-light'>Your new user name has been saved!</p> : ""}
     </div>
   )
 }

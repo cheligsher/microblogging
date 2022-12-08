@@ -1,19 +1,20 @@
 import React, { useState, useContext } from "react";
-import NewTweetContext from "../contexts/NewTweetContext";
+import AppContext from "../contexts/AppContext";
 
 function AddTweet() {
 
-  const { user } = useContext(NewTweetContext)
+  const { postInput, user } = useContext(AppContext)
 
   const [text, setText] = useState("");
-  const newText = {
-    content: text,
-    date: new Date().toISOString(),
-    userName: user,
-  };
   
   const submit = (e) => {
     e.preventDefault();
+    const newText = {
+      content: text,
+      date: new Date().toISOString(),
+      userName: user,
+    };
+    postInput(newText)
     setText("");
   };
   return (
@@ -33,7 +34,7 @@ function AddTweet() {
         ) : (
           ""
         )}
-        {(text.length === 140 || text.length == 0)? (
+        {(text.length === 140 || text.length === 0)? (
           <button type="submit" disabled>
             Chirp
           </button>
