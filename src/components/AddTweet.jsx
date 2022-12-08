@@ -21,7 +21,7 @@ function AddTweet() {
     <form onSubmit={submit}>
       <div className="add-tweet-div mx-auto">
         <textarea
-          placeholder="What do you have in mind..."
+          placeholder="What would you like to chirp about ..?"
           rows={8}
           value={text}
           maxLength={140}
