@@ -6,13 +6,12 @@ import axios from "axios";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
-import TweetListContext, {
-  TweetListProvider,
-} from "./contexts/TweetListContext";
+import TweetListContext from "./contexts/TweetListContext";
+import NewTweetContext from "./contexts/NewTweetContext";
 
 function App() {
   const [tweetList, setTweetList] = useState([]);
-  const getInput = async (newTweet) => {
+  const postInput = async (newTweet) => {
     try {
       const newTweetList = [newTweet, ...tweetList];
       const res = await axios.post(
@@ -26,18 +25,21 @@ function App() {
   };
 
   useEffect(() => {
-    try {
-      const getTweets = async () => {
-        const resp = await axios.get(
-          "https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet"
-        );
-        const data = await resp.data.tweets;
-        setTweetList(data);
-      };
-      getTweets();
-    } catch (e) {
-      console.error("Error: " + e);
-    }
+    const interval = setInterval(() => {
+      try {
+        const getTweets = async () => {
+          const resp = await axios.get(
+            "https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet"
+          );
+          const data = await resp.data.tweets;
+          setTweetList(data);
+        };
+        getTweets();
+      } catch (e) {
+        console.error("Error: " + e);
+      }
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const [user, setUser] = useState(() => {
@@ -58,22 +60,25 @@ function App() {
       <div className="main-container" key={nanoid()}>
         <Navbar />
         <TweetListContext.Provider value={{ tweetList }}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <AddTweet input={getInput} tweets={tweetList} user={user} />
-                  <TweetList />
-                </>
-              }
-            ></Route>
-
-            <Route
-              path="/UserProfile"
-              element={<UserProfile userName={user} userChange={userChange} />}
-            ></Route>
-          </Routes>
+          <NewTweetContext.Provider value={{ postInput, user }}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <AddTweet />
+                    <TweetList />
+                  </>
+                }
+              ></Route>
+              <Route
+                path="/UserProfile"
+                element={
+                  <UserProfile userName={user} userChange={userChange} />
+                }
+              ></Route>
+            </Routes>
+          </NewTweetContext.Provider>
         </TweetListContext.Provider>
       </div>
     </BrowserRouter>

@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import NewTweetContext from "../contexts/NewTweetContext";
 
-function AddTweet({ input, tweets, user }) {
+function AddTweet() {
+
+  const { user } = useContext(NewTweetContext)
+
   const [text, setText] = useState("");
   const newText = {
     content: text,
@@ -10,7 +14,6 @@ function AddTweet({ input, tweets, user }) {
   
   const submit = (e) => {
     e.preventDefault();
-    input(newText);
     setText("");
   };
   return (

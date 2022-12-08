@@ -8,6 +8,7 @@
 .chirp{
     font-family: 'Luckiest Guy', cursive;
     color: #37c37f;
+    background-color: transparent;
 }
 
 input{
@@ -20,11 +21,11 @@ input{
     width: 40%;
 }
 
-.text-decoration-none{
+.link{
     color: #6c757d
 }
 
-.text-decoration-none:hover{
+.link:hover{
     color: #fff;
     background-color: #6c757d;
     border-radius: 15px;
