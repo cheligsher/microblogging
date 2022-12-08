@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import AddTweet from "./components/AddTweet";
 import TweetList from "./components/TweetList";
 import { nanoid } from "nanoid";
