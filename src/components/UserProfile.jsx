@@ -10,6 +10,10 @@ function UserProfile({ userName, userChange}) {
 
   const [user, setUser] = useState(userName);
   const [isSaved, showIsSaved] = useState(false)
+  const isSavedMessage = <div className='text-light'>
+    <p>Your user name has been saved!</p>
+    <p>Go back to the <a href="/" className='text-decoration-none'>home</a> page?</p>
+    </div>
 
   return (
     <div className='mx-auto text-center user-profile-div d-flex flex-column'>
@@ -19,7 +23,7 @@ function UserProfile({ userName, userChange}) {
         <div className='text-start mt-3 d-flex justify-content-end'>
                 <button onClick={saveUser}>Save</button>
         </div>
-          {isSaved ? <p className='text-light'>Your new user name has been saved!</p> : ""}
+          {isSaved ? isSavedMessage : ""}
     </div>
   )
 }

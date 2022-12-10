@@ -36,6 +36,10 @@ input{
     color: #fff; 
 }
 
+.bird-img{
+    width: 20px;
+}
+
 @media(max-width:800px){
     .user-profile-div{
         width: 80%;

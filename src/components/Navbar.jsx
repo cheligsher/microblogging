@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import React from "react";
 import "../styles/profile.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import "../images/greenbird.png"
 
 function Navbar() {
 
@@ -32,6 +33,7 @@ function Navbar() {
             <li>
               <button className="text-decoration-none chirp" onClick={()=> navigate("/")}>
                 Chirp
+                <img src={require('../images/greenbird.png')} className="bird-img ms-2" />
               </button>
             </li>
           </div>
