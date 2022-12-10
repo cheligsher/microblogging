@@ -33,7 +33,7 @@ function Navbar() {
             <li>
               <button className="text-decoration-none chirp" onClick={()=> navigate("/")}>
                 Chirp
-                <img src={require('../images/greenbird.png')} className="bird-img ms-2" />
+                <img src={require('../images/greenbird.png')} alt="" className="bird-img ms-2" />
               </button>
             </li>
           </div>
