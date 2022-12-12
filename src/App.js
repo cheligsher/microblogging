@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
 import Home from "./components/Home";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 function App() {
   const [user, setUser] = useState(
@@ -30,6 +32,8 @@ function App() {
             path="/UserProfile"
             element={<UserProfile userName={user} userChange={userChange} />}
           ></Route>
+          <Route path="/SignUp" element={<SignUp />}></Route>
+          <Route path="/Login" element={<Login />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

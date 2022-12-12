@@ -1,49 +1,47 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import AppContext from "../contexts/AppContext";
 import AddTweet from "./AddTweet";
 import TweetList from "./TweetList";
+import { addDoc, getDocs } from "firebase/firestore";
+import { tweetsCol } from "../firebase";
 
-
-
-function Home({user}) {
+function Home({ user }) {
   const [tweetList, setTweetList] = useState([]);
 
   const postInput = async (newTweet) => {
     try {
       const newTweetList = [newTweet, ...tweetList];
-      const res = await axios.post(
-        "https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet",
-        newTweet
-      );
-      console.log(res.data);
+      const docRef = await addDoc(tweetsCol, {
+        content: newTweet.content,
+        date: newTweet.date,
+        userName: newTweet.userName,
+      });
       setTweetList(newTweetList);
-    } catch (err) {
-      console.error("Error: " + err);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
   };
 
-  const getTweets = async () => {
-    try{
-        const resp = await axios.get(
-      "https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet"
-    );
-    const data = await resp.data.tweets;
-    if(data.length !== tweetList.length)
-      setTweetList(data);
-    }catch (e) {
-        console.error("Error: " + e);
-  }};
+  const getAllTweets = async () => {
+    try {
+      const querySnapshot = await getDocs(tweetsCol);
+      let newTweets = []
+      querySnapshot.forEach((doc) => {
+        newTweets.push({...doc.data(), id: doc.id})
+        // date sort isnt working
+        if(doc.data.length !== tweetList.length)
+        console.log(newTweets);
+      });
+      const sortedTweets = newTweets.sort((a, b) => b.date - a.date)
+      setTweetList(sortedTweets)
+    } catch (err) {
+      console.error("Error getting tweets: ", err);
+    }
+  };
+  
   
   useEffect(() => {
-    getTweets()
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-        getTweets();
-    }, 5000);
-    return () => clearInterval(interval);
+    getAllTweets();
   }, []);
 
   return (
