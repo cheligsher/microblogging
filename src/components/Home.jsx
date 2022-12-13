@@ -15,7 +15,7 @@ function Home({ user, loggedInUser, imgUrl }) {
         content: newTweet.content,
         date: newTweet.date,
         userName: newTweet.userName,
-        userId: newTweet.userId
+        userId: newTweet.userId,
       });
       setTweetList(newTweetList);
     } catch (e) {
@@ -51,7 +51,7 @@ function Home({ user, loggedInUser, imgUrl }) {
   return (
     <div>
       <AppContext.Provider value={{ postInput, tweetList, user, imgUrl }}>
-        <AddTweet loggedInUser={loggedInUser}/>
+        <AddTweet loggedInUser={loggedInUser} />
         <TweetList />
       </AppContext.Provider>
     </div>

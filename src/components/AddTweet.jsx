@@ -1,21 +1,20 @@
 import React, { useState, useContext } from "react";
 import AppContext from "../contexts/AppContext";
 
-function AddTweet({loggedInUser}) {
-
-  const { postInput, user } = useContext(AppContext)
+function AddTweet({ loggedInUser }) {
+  const { postInput, user } = useContext(AppContext);
 
   const [text, setText] = useState("");
-  
+
   const submit = (e) => {
     e.preventDefault();
     const newText = {
       content: text,
       date: new Date().toISOString(),
       userName: user,
-      userId: loggedInUser
+      userId: loggedInUser,
     };
-    postInput(newText)
+    postInput(newText);
     setText("");
   };
   return (
@@ -35,7 +34,7 @@ function AddTweet({loggedInUser}) {
         ) : (
           ""
         )}
-        {(text.length === 140 || text.length === 0)? (
+        {text.length === 140 || text.length === 0 ? (
           <button type="submit" disabled>
             Chirp
           </button>

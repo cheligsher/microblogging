@@ -15,25 +15,28 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleSignUp = async(e) => {
-    try{
+  const handleSignUp = async (e) => {
+    try {
       e.preventDefault();
-    const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-        const user = userCredentials.user;
-        // const newUserWithId = {
-        //   email,
-        //   password,
-        // }
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+      // const newUserWithId = {
+      //   email,
+      //   password,
+      // }
 
-        //await setDoc(doc(db, "users", user.uid), newUserWithId );
-        alert("You have successfully signed up!");
-        navigate("/Login");
-      
-    } catch(error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(errorCode, errorMessage);
-      };
+      //await setDoc(doc(db, "users", user.uid), newUserWithId );
+      alert("You have successfully signed up!");
+      navigate("/Login");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(errorCode, errorMessage);
+    }
   };
 
   const GoogleLogin = () => {

@@ -9,7 +9,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-function Login({setLoggedInUser}) {
+function Login({ setLoggedInUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -19,23 +19,23 @@ function Login({setLoggedInUser}) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user.uid;
-        setLoggedInUser(user)
-        localStorage.setItem("LoggedInUser", JSON.stringify(user))
-        alert("You have successfully logged in!")
+        setLoggedInUser(user);
+        localStorage.setItem("LoggedInUser", JSON.stringify(user));
+        alert("You have successfully logged in!");
         navigate("/");
       })
       .catch((error) => {
-        alert("No user has been found. Please sign up!")
-        navigate("/SignUp")
+        alert("No user has been found. Please sign up!");
+        navigate("/SignUp");
       });
   };
 
   const GoogleLogin = async () => {
-    const userCredential = await signInWithPopup(auth, provider)
-    const userId = userCredential.user.uid
-    setLoggedInUser(userId)
-        localStorage.setItem("LoggedInUser", JSON.stringify(userId))
-    navigate("/")
+    const userCredential = await signInWithPopup(auth, provider);
+    const userId = userCredential.user.uid;
+    setLoggedInUser(userId);
+    localStorage.setItem("LoggedInUser", JSON.stringify(userId));
+    navigate("/");
   };
 
   return (

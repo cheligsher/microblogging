@@ -8,12 +8,12 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import {storage} from "./firebase"
-import { doc, setDoc } from "firebase/firestore"; 
-import {db} from "./firebase"
+import { storage } from "./firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "./firebase";
 
 function App() {
-  const [imgUrl , setImgUrl] = useState("")
+  const [imgUrl, setImgUrl] = useState("");
   const [user, setUser] = useState(
     localStorage.getItem("userName")
       ? JSON.parse(localStorage.getItem("userName"))
@@ -21,27 +21,26 @@ function App() {
   );
 
   const [loggedInUser, setLoggedInUser] = useState(
-  JSON.parse(localStorage.getItem("LoggedInUser"))
-  || "cheli")
+    JSON.parse(localStorage.getItem("LoggedInUser")) || "cheli"
+  );
 
   const uploadImg = (image) => {
-    if(!image) return;
+    if (!image) return;
     const storageRef = ref(storage, loggedInUser);
 
-    return uploadBytes(storageRef, image).then((url) =>{
-     return getDownloadURL(url.ref).then((getUrl)=>{
-       setImgUrl(getUrl)
-       return getUrl
+    return uploadBytes(storageRef, image).then((url) => {
+      return getDownloadURL(url.ref).then((getUrl) => {
+        setImgUrl(getUrl);
+        return getUrl;
+      });
+    });
+  };
 
-     })
-    })
-};
-  
   const userChange = async (userName, image) => {
     setUser(userName);
-    const updatedImg = await uploadImg(image)
-    const newUser = {userName: userName, imgUrl: updatedImg}
-    setDoc(doc(db, "users", loggedInUser), newUser, {merge: true} )
+    const updatedImg = await uploadImg(image);
+    const newUser = { userName: userName, imgUrl: updatedImg };
+    setDoc(doc(db, "users", loggedInUser), newUser, { merge: true });
   };
 
   useEffect(() => {
@@ -51,7 +50,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="main-container" key={nanoid()}>
-        <Navbar setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}/>
+        <Navbar setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />
         <Routes>
           <Route
             index
@@ -65,12 +64,19 @@ function App() {
             path="/UserProfile"
             element={
               <PrivateRoute loggedInUser={loggedInUser}>
-                <UserProfile userName={user} userChange={userChange} loggedInUser={loggedInUser} />
+                <UserProfile
+                  userName={user}
+                  userChange={userChange}
+                  loggedInUser={loggedInUser}
+                />
               </PrivateRoute>
             }
           ></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
-          <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser}/>}></Route>
+          <Route
+            path="/Login"
+            element={<Login setLoggedInUser={setLoggedInUser} />}
+          ></Route>
         </Routes>
       </div>
     </BrowserRouter>
