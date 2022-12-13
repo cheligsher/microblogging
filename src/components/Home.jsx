@@ -5,7 +5,7 @@ import TweetList from "./TweetList";
 import { addDoc, getDocs } from "firebase/firestore";
 import { tweetsCol } from "../firebase";
 
-function Home({ user, loggedInUser }) {
+function Home({ user, loggedInUser, imgUrl }) {
   const [tweetList, setTweetList] = useState([]);
 
   const postInput = async (newTweet) => {
@@ -50,7 +50,7 @@ function Home({ user, loggedInUser }) {
 
   return (
     <div>
-      <AppContext.Provider value={{ postInput, tweetList, user }}>
+      <AppContext.Provider value={{ postInput, tweetList, user, imgUrl }}>
         <AddTweet loggedInUser={loggedInUser}/>
         <TweetList />
       </AppContext.Provider>

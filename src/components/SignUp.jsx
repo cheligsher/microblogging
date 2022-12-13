@@ -7,7 +7,6 @@ import {
 import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore"; 
 const provider = new GoogleAuthProvider();
 
 function SignUp() {
@@ -21,12 +20,12 @@ function SignUp() {
       e.preventDefault();
     const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
         const user = userCredentials.user;
-        const newUserWithId = {
-          email,
-          password,
-        }
+        // const newUserWithId = {
+        //   email,
+        //   password,
+        // }
 
-        await setDoc(doc(db, "users", user.uid), newUserWithId );
+        //await setDoc(doc(db, "users", user.uid), newUserWithId );
         alert("You have successfully signed up!");
         navigate("/Login");
       

@@ -74,6 +74,12 @@ button:disabled {
   padding: 0 10px 10px;
 }
 
+.tweet img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 @media (max-width: 800px) {
   .add-tweet-div {
     width: 55%;

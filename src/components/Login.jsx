@@ -19,7 +19,6 @@ function Login({setLoggedInUser}) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user.uid;
-        console.log("user =>",user)
         setLoggedInUser(user)
         localStorage.setItem("LoggedInUser", JSON.stringify(user))
         alert("You have successfully logged in!")
@@ -32,9 +31,10 @@ function Login({setLoggedInUser}) {
   };
 
   const GoogleLogin = async () => {
-    const user = await signInWithPopup(auth, provider)
-    setLoggedInUser(user)
-        localStorage.setItem("LoggedInUser", JSON.stringify(user))
+    const userCredential = await signInWithPopup(auth, provider)
+    const userId = userCredential.user.uid
+    setLoggedInUser(userId)
+        localStorage.setItem("LoggedInUser", JSON.stringify(userId))
     navigate("/")
   };
 
