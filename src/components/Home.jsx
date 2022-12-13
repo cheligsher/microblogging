@@ -37,7 +37,6 @@ function Home({ user }) {
         if (b.date > a.date) {
           return 1;
         }
-
       });
       setTweetList(sortedTweets);
     } catch (err) {

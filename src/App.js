@@ -16,10 +16,6 @@ function App() {
       : "cheli"
   );
 
-
-
-  
-
   const userChange = (userName) => {
     setUser(userName);
   };
@@ -33,19 +29,30 @@ function App() {
       <div className="main-container" key={nanoid()}>
         <Navbar />
         <Routes>
-          <Route index element={
-            <PrivateRoute><Home user={user} /></PrivateRoute>
-          }></Route>
+          <Route
+            index
+            element={
+              <PrivateRoute>
+                <Home user={user} />
+              </PrivateRoute>
+            }
+          ></Route>
           <Route
             path="/UserProfile"
             element={
-            <PrivateRoute><UserProfile userName={user} userChange={userChange} /></PrivateRoute>}
+              <PrivateRoute>
+                <UserProfile userName={user} userChange={userChange} />
+              </PrivateRoute>
+            }
           ></Route>
-          <Route path="/SignOut" element={<PrivateRoute>
-              <SignOut />
-            </PrivateRoute>}>
-            
-            </Route>
+          <Route
+            path="/SignOut"
+            element={
+              <PrivateRoute>
+                <SignOut />
+              </PrivateRoute>
+            }
+          ></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
           <Route path="/Login" element={<Login />}></Route>
         </Routes>

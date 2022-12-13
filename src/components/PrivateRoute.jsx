@@ -1,10 +1,9 @@
-import React from 'react'
-import {Navigate} from 'react-router-dom'
-import { auth } from "../firebase"
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 const PrivateRoute = ({ children }) => {
-    return auth.currentUser ? children : <Navigate to='/login'></Navigate>;
-  };
+  return auth.currentUser ? children : <Navigate to="/login"></Navigate>;
+};
 
-
-  export default PrivateRoute
+export default PrivateRoute;

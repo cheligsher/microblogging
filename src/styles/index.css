@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #15202B
+  background-color: #15202b;
 }
 
 form {
@@ -24,7 +24,7 @@ form {
   color: white;
 }
 
-button{
+button {
   background-color: #37c37f;
   color: white;
   padding: 8px 12px;
@@ -50,7 +50,6 @@ button{
   padding-bottom: 5px;
   word-break: break-word;
   white-space: pre-wrap;
-
 }
 
 .tweet .justify-content-between {
@@ -69,25 +68,24 @@ button:disabled {
   opacity: 0.5;
 }
 
-.tweet-list{
+.tweet-list {
   overflow-y: auto;
   height: 500px;
   padding: 0 10px 10px;
 }
 
-@media(max-width:800px){
+@media (max-width: 800px) {
   .add-tweet-div {
     width: 55%;
   }
 
   .tweet {
     width: 55%;
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
 }
 
-@media(max-width:600px){
-
+@media (max-width: 600px) {
   .add-tweet-div {
     width: 95%;
   }
