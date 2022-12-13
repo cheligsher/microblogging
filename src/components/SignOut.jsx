@@ -1,11 +1,6 @@
 import React from "react";
-import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
 
 function SignOut({setLoggedInUser}) {
-  const navigate = useNavigate();
- 
-//   navigate("/Login");
   return (
     <div className="text-light text-center mt-5">
       You have been successfully signed out! If you are not redirected please{" "}

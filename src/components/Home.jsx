@@ -4,9 +4,20 @@ import AddTweet from "./AddTweet";
 import TweetList from "./TweetList";
 import { addDoc, getDocs } from "firebase/firestore";
 import { tweetsCol } from "../firebase";
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 function Home({ user, loggedInUser, imgUrl }) {
   const [tweetList, setTweetList] = useState([]);
+  const [loggedInUserId, setLoggedInUserId] = useState("");
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoggedInUserId(auth.currentUser.uid);
+      }
+    });
+  }, []);
 
   const postInput = async (newTweet) => {
     try {
@@ -14,8 +25,7 @@ function Home({ user, loggedInUser, imgUrl }) {
       const docRef = await addDoc(tweetsCol, {
         content: newTweet.content,
         date: newTweet.date,
-        userName: newTweet.userName,
-        userId: newTweet.userId,
+        userId: loggedInUserId,
       });
       setTweetList(newTweetList);
     } catch (e) {

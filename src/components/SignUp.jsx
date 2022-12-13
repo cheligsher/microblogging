@@ -24,12 +24,6 @@ function SignUp() {
         password
       );
       const user = userCredentials.user;
-      // const newUserWithId = {
-      //   email,
-      //   password,
-      // }
-
-      //await setDoc(doc(db, "users", user.uid), newUserWithId );
       alert("You have successfully signed up!");
       navigate("/Login");
     } catch (error) {

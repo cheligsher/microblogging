@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/index.css";
 import "../styles/profile.css";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
 import greenbird from "../images/greenbird.png";
 
@@ -10,7 +10,6 @@ function UserProfile({ userName, userChange, loggedInUser }) {
   const [imgFile, setImgFile] = useState(null);
   const [user, setUser] = useState(userName);
   const [isSaved, showIsSaved] = useState(false);
-  const [userImg, setUserImg] = useState("");
 
   const isSavedMessage = (
     <div className="text-light">
@@ -31,6 +30,7 @@ function UserProfile({ userName, userChange, loggedInUser }) {
       .then((url) => {
         setImgUrl(url);
       })
+      .catch(() => console.log("User has no profile picture!"))
       .catch((error) => {
         alert("There was an error: ", error);
       });
