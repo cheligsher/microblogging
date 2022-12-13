@@ -6,6 +6,8 @@ import UserProfile from "./components/UserProfile";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import SignOut from "./components/SignOut";
 
 function App() {
   const [user, setUser] = useState(
@@ -13,6 +15,10 @@ function App() {
       ? JSON.parse(localStorage.getItem("userName"))
       : "cheli"
   );
+
+
+
+  
 
   const userChange = (userName) => {
     setUser(userName);
@@ -27,11 +33,19 @@ function App() {
       <div className="main-container" key={nanoid()}>
         <Navbar />
         <Routes>
-          <Route index element={<Home user={user} />}></Route>
+          <Route index element={
+            <PrivateRoute><Home user={user} /></PrivateRoute>
+          }></Route>
           <Route
             path="/UserProfile"
-            element={<UserProfile userName={user} userChange={userChange} />}
+            element={
+            <PrivateRoute><UserProfile userName={user} userChange={userChange} /></PrivateRoute>}
           ></Route>
+          <Route path="/SignOut" element={<PrivateRoute>
+              <SignOut />
+            </PrivateRoute>}>
+            
+            </Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
           <Route path="/Login" element={<Login />}></Route>
         </Routes>

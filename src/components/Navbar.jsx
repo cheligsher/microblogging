@@ -1,10 +1,12 @@
 import { nanoid } from "nanoid";
-import React from "react";
+import React, { useState } from "react";
 import "../styles/profile.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../images/greenbird.png"
+import { auth } from "../firebase";
 
 function Navbar() {
+  const [ signOut, setSignOut ] = useState("")
 
   const navigate = useNavigate()
   return (
@@ -12,22 +14,31 @@ function Navbar() {
       <nav className="nav-bar rounded-bottom mx-auto">
         <ul className="list-unstyled mx-5 d-flex flex-row py-3">
           <li>
-            <NavLink
+            {auth.currentUser && <NavLink
               to={"/"}
               className="px-3 text-decoration-none py-3 link align-middle"
               activeClassName="active"
             >
               Home
-            </NavLink>
+            </NavLink>}
           </li>
           <li>
-            <NavLink
+            {auth.currentUser && <NavLink
               to={"/UserProfile"}
               className="px-3 text-decoration-none py-3 link align-middle"
               activeClassName="active"
             >
-              Profile
-            </NavLink>
+               Profile
+            </NavLink>}
+          </li>
+          <li>
+            { auth.currentUser && <NavLink
+              to={"/SignOut"}
+              className="px-3 text-decoration-none py-3 link align-middle"
+              activeClassName="active"
+            >
+              Sign Out 
+            </NavLink>}
           </li>
           <div className="ms-auto">
             <li>

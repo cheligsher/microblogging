@@ -1,6 +1,6 @@
-import { getFirestore, getDocs } from 'firebase/firestore';
+import { getFirestore, getDocs } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { collection } from "firebase/firestore"; 
+import { collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -13,8 +13,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore()
-const tweetsCol = collection(db, "tweets")
+const db = getFirestore();
+const tweetsCol = collection(db, "tweets");
 const auth = getAuth(app);
 
-export { app, tweetsCol, auth }
+export { app, tweetsCol, auth };

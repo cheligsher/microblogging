@@ -25,21 +25,26 @@ function Home({ user }) {
   const getAllTweets = async () => {
     try {
       const querySnapshot = await getDocs(tweetsCol);
-      let newTweets = []
+      let newTweets = [];
       querySnapshot.forEach((doc) => {
-        newTweets.push({...doc.data(), id: doc.id})
+        newTweets.push({ ...doc.data(), id: doc.id });
         // date sort isnt working
-        if(doc.data.length !== tweetList.length)
-        console.log(newTweets);
       });
-      const sortedTweets = newTweets.sort((a, b) => b.date - a.date)
-      setTweetList(sortedTweets)
+      const sortedTweets = newTweets.sort((a, b) => {
+        if (b.date < a.date) {
+          return -1;
+        }
+        if (b.date > a.date) {
+          return 1;
+        }
+
+      });
+      setTweetList(sortedTweets);
     } catch (err) {
       console.error("Error getting tweets: ", err);
     }
   };
-  
-  
+
   useEffect(() => {
     getAllTweets();
   }, []);
