@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import AppContext from "../contexts/AppContext";
 
-function AddTweet() {
+function AddTweet({loggedInUser}) {
 
   const { postInput, user } = useContext(AppContext)
 
@@ -13,6 +13,7 @@ function AddTweet() {
       content: text,
       date: new Date().toISOString(),
       userName: user,
+      userId: loggedInUser
     };
     postInput(newText)
     setText("");

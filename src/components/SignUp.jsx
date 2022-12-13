@@ -4,9 +4,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithRedirect,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; 
 const provider = new GoogleAuthProvider();
 
 function SignUp() {
@@ -15,28 +16,30 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    console.log("sign up clicked");
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        console.log("User signed in!");
-        const user = userCredential.user;
-        console.log(user);
+  const handleSignUp = async(e) => {
+    try{
+      e.preventDefault();
+    const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+        const user = userCredentials.user;
+        const newUserWithId = {
+          email,
+          password,
+        }
+
+        await setDoc(doc(db, "users", user.uid), newUserWithId );
         alert("You have successfully signed up!");
         navigate("/Login");
-      })
-      .catch((error) => {
+      
+    } catch(error) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(errorCode, errorMessage);
-      });
+      };
   };
 
   const GoogleLogin = () => {
     signInWithRedirect(auth, provider);
-    navigate("/Home");
+    navigate("/Login");
   };
 
   return (

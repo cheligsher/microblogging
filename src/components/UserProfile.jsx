@@ -16,10 +16,17 @@ function UserProfile({ userName, userChange}) {
     </div>
 
   return (
-    <div className='mx-auto text-center user-profile-div d-flex flex-column'>
+    <div className='mx-auto mt-5 text-center user-profile-div d-flex flex-column'>
+        <div className='d-flex flex-row justify-content-between'>
         <h2 className='text-light mb-3 text-start pt-4'>Profile</h2>
+        <img src={require("../images/greenbird.png")} alt="" />
+        </div>
         <div className='text-light text-start'>User Name</div>
         <input type="text" className='p-2 text-light w-100' value={user} onChange={e => setUser(e.target.value)}/>
+        
+        <div class="input-group mt-4">
+  <input type="file" className="form-control" id="inputGroupFile02"/>
+</div>
         <div className='text-start mt-3 d-flex justify-content-end'>
                 <button onClick={saveUser}>Save</button>
         </div>

@@ -17,4 +17,4 @@ const db = getFirestore();
 const tweetsCol = collection(db, "tweets");
 const auth = getAuth(app);
 
-export { app, tweetsCol, auth };
+export { app, tweetsCol, auth, db };

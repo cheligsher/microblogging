@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-function Login() {
+function Login({setLoggedInUser}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,23 +18,24 @@ function Login() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-        console.log("userCredential");
-        const user = userCredential.user;
-        console.log(user);
-        alert("You have successfully logged in!");
+        const user = userCredential.user.uid;
+        console.log("user =>",user)
+        setLoggedInUser(user)
+        localStorage.setItem("LoggedInUser", JSON.stringify(user))
+        alert("You have successfully logged in!")
         navigate("/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(errorCode, errorMessage);
+        alert("No user has been found. Please sign up!")
+        navigate("/SignUp")
       });
   };
 
-  const GoogleLogin = () => {
-    signInWithRedirect(auth, provider);
-    navigate("/Home");
+  const GoogleLogin = async () => {
+    const user = await signInWithPopup(auth, provider)
+    setLoggedInUser(user)
+        localStorage.setItem("LoggedInUser", JSON.stringify(user))
+    navigate("/")
   };
 
   return (

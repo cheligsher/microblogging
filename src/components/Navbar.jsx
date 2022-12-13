@@ -5,8 +5,15 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../images/greenbird.png";
 import { auth } from "../firebase";
 
-function Navbar() {
+function Navbar({setLoggedInUser, loggedInUser}) {
   const [signOut, setSignOut] = useState("");
+
+  const handleSignOut = () => {
+    auth.signOut();
+    setLoggedInUser(false)
+    alert("You have successfully signed out. See you next time!")
+    localStorage.removeItem("LoggedInUser")
+  }
 
   const navigate = useNavigate();
   return (
@@ -14,7 +21,7 @@ function Navbar() {
       <nav className="nav-bar rounded-bottom mx-auto">
         <ul className="list-unstyled mx-5 d-flex flex-row py-3">
           <li>
-            {auth.currentUser && (
+            {loggedInUser && (
               <NavLink
                 to={"/"}
                 className="px-3 text-decoration-none py-3 link align-middle"
@@ -25,7 +32,7 @@ function Navbar() {
             )}
           </li>
           <li>
-            {auth.currentUser && (
+            {loggedInUser && (
               <NavLink
                 to={"/UserProfile"}
                 className="px-3 text-decoration-none py-3 link align-middle"
@@ -36,9 +43,9 @@ function Navbar() {
             )}
           </li>
           <li>
-            {auth.currentUser && (
+            {loggedInUser && (
               <NavLink
-                to={"/SignOut"}
+                onClick={handleSignOut}
                 className="px-3 text-decoration-none py-3 link align-middle"
                 activeClassName="active"
               >

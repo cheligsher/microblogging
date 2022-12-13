@@ -5,7 +5,7 @@ import TweetList from "./TweetList";
 import { addDoc, getDocs } from "firebase/firestore";
 import { tweetsCol } from "../firebase";
 
-function Home({ user }) {
+function Home({ user, loggedInUser }) {
   const [tweetList, setTweetList] = useState([]);
 
   const postInput = async (newTweet) => {
@@ -15,6 +15,7 @@ function Home({ user }) {
         content: newTweet.content,
         date: newTweet.date,
         userName: newTweet.userName,
+        userId: newTweet.userId
       });
       setTweetList(newTweetList);
     } catch (e) {
@@ -28,7 +29,6 @@ function Home({ user }) {
       let newTweets = [];
       querySnapshot.forEach((doc) => {
         newTweets.push({ ...doc.data(), id: doc.id });
-        // date sort isnt working
       });
       const sortedTweets = newTweets.sort((a, b) => {
         if (b.date < a.date) {
@@ -51,7 +51,7 @@ function Home({ user }) {
   return (
     <div>
       <AppContext.Provider value={{ postInput, tweetList, user }}>
-        <AddTweet />
+        <AddTweet loggedInUser={loggedInUser}/>
         <TweetList />
       </AppContext.Provider>
     </div>

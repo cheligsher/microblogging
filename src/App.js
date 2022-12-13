@@ -16,6 +16,10 @@ function App() {
       : "cheli"
   );
 
+  const [loggedInUser, setLoggedInUser] = useState(
+  JSON.parse(localStorage.getItem("LoggedInUser"))
+  || "cheli")
+
   const userChange = (userName) => {
     setUser(userName);
   };
@@ -27,34 +31,26 @@ function App() {
   return (
     <BrowserRouter>
       <div className="main-container" key={nanoid()}>
-        <Navbar />
+        <Navbar setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}/>
         <Routes>
           <Route
             index
             element={
-              <PrivateRoute>
-                <Home user={user} />
+              <PrivateRoute loggedInUser={loggedInUser}>
+                <Home user={user} loggedInUser={loggedInUser} />
               </PrivateRoute>
             }
           ></Route>
           <Route
             path="/UserProfile"
             element={
-              <PrivateRoute>
+              <PrivateRoute loggedInUser={loggedInUser}>
                 <UserProfile userName={user} userChange={userChange} />
               </PrivateRoute>
             }
           ></Route>
-          <Route
-            path="/SignOut"
-            element={
-              <PrivateRoute>
-                <SignOut />
-              </PrivateRoute>
-            }
-          ></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
-          <Route path="/Login" element={<Login />}></Route>
+          <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser}/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>
