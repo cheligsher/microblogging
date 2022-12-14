@@ -11,6 +11,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
+import AuthUserContext from "./contexts/AuthUserContext";
 
 function App() {
   const [imgUrl, setImgUrl] = useState("");
@@ -48,6 +49,7 @@ function App() {
   }, [user]);
 
   return (
+    <AuthUserContext.Provider>
     <BrowserRouter>
       <div className="main-container" key={nanoid()}>
         <Navbar setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />
@@ -80,6 +82,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </AuthUserContext.Provider>
   );
 }
 
